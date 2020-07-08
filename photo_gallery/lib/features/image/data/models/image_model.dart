@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:photo_gallery/features/camera/domain/entities/image.dart';
+import 'package:photo_gallery/features/image/domain/entities/image.dart';
 import 'package:meta/meta.dart';
 
 class ImageModel extends Image {

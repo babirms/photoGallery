@@ -1,10 +1,10 @@
 import 'package:photo_gallery/core/network/network_info.dart';
-import 'package:photo_gallery/features/camera/data/datasources/image_remote_data_source.dart';
-import 'package:photo_gallery/features/camera/data/models/image_model.dart';
-import 'package:photo_gallery/features/camera/domain/entities/image.dart';
+import 'package:photo_gallery/features/image/data/datasources/image_remote_data_source.dart';
+import 'package:photo_gallery/features/image/data/models/image_model.dart';
+import 'package:photo_gallery/features/image/domain/entities/image.dart';
 import 'package:photo_gallery/core/resources/error.dart';
 import 'package:dartz/dartz.dart';
-import 'package:photo_gallery/features/camera/domain/repositories/image_repository.dart';
+import 'package:photo_gallery/features/image/domain/repositories/image_repository.dart';
 import 'package:meta/meta.dart';
 
 class ImageRepositoryImpl extends ImageRepository {

@@ -1,8 +1,8 @@
 import 'package:photo_gallery/core/resources/error.dart';
 import 'package:dartz/dartz.dart';
 import 'package:photo_gallery/core/resources/usecase.dart';
-import 'package:photo_gallery/features/camera/domain/entities/image.dart';
-import 'package:photo_gallery/features/camera/domain/repositories/image_repository.dart';
+import 'package:photo_gallery/features/image/domain/entities/image.dart';
+import 'package:photo_gallery/features/image/domain/repositories/image_repository.dart';
 
 class GetImage extends UseCase<Image, NoParams> {
   final ImageRepository repository;

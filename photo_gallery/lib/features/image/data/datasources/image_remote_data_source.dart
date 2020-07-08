@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:photo_gallery/features/camera/data/models/image_model.dart';
+import 'package:photo_gallery/features/image/data/models/image_model.dart';
 import 'package:meta/meta.dart';
 
 abstract class ImageRemoteDataSource {

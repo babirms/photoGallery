@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_gallery/features/camera/presentation/pages/main_camera.dart';
+import 'package:photo_gallery/features/image/presentation/pages/main_camera.dart';
 
 void main() async {
   // plugin inicializado antes do runapp
