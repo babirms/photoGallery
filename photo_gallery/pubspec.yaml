@@ -28,7 +28,7 @@ dependencies:
   camera:
   path_provider:
   path:
-  bloc: ^5.0.1
+  flutter_bloc: ^5.0.1
   equatable: ^0.6.1
   shared_preferences: ^0.5.8
   get_it: ^4.0.2

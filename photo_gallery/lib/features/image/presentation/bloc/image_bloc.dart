@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_gallery/core/resources/error.dart';
 import 'package:photo_gallery/core/resources/usecase.dart';
 import 'package:photo_gallery/features/image/domain/usecases/get_image.dart';
@@ -15,14 +15,13 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
 
   ImageBloc({@required this.getImage, @required this.saveImage})
       : super(Empty());
-
   @override
   Stream<ImageState> mapEventToState(
     ImageEvent event,
   ) async* {
     if (event is SaveImageEvent) {
       yield Loading();
-      final failureOrBool =  await saveImage(Params(image: event.image));
+      final failureOrBool = await saveImage(Params(image: event.image));
       yield* _eitherLoadedOrErrorState(failureOrBool);
     } else if (event is GetImageEvent) {
       yield Loading();

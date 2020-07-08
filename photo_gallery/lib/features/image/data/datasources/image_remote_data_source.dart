@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:photo_gallery/features/image/data/models/image_model.dart';
 import 'package:meta/meta.dart';
 
@@ -32,19 +35,12 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
     ImageModel imageResult;
 
     try {
-      // create new document
-      /*  DocumentReference newDoc =
-          firestore.collection(_collectionName).document(firebaseUser.uid);
-      newDoc.setData(imageModel.toJson(), merge: true);
-
-      DocumentReference docRef =
-      
-          firestore.collection(_collectionName).document(firebaseUser.uid);
-      DocumentSnapshot docSnapshot = await docRef.get();
-
-      imageResult = ImageModel.fromDocumentSnapshot(docSnapshot);*/
-      
-
+      StorageReference storageReference =
+          FirebaseStorage.instance.ref().child('/images/${imageModel.path}');
+      StorageUploadTask uploadTask =
+          storageReference.putFile(File(imageModel.path));
+      await uploadTask.onComplete;
+      print('File Uploaded');
     } on Exception catch (e) {
       throw e;
     }
