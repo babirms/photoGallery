@@ -1,13 +1,23 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ConfirmImageScreen extends StatelessWidget {
+class ConfirmImageScreen extends StatefulWidget {
   final String imagePath;
 
   const ConfirmImageScreen({Key key, this.imagePath}) : super(key: key);
 
+  @override
+  State<StatefulWidget> createState() {
+    return _ConfirmImageScreenState();
+  }
+}
+
+class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
+  String _uploadedFileURL;
+  // construção da tela
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +31,7 @@ class ConfirmImageScreen extends StatelessWidget {
           ),
           // Visualização da Imagem coletada
           Image.file(
-            File(imagePath),
+            File(widget.imagePath),
           ),
           // Navegação Básica pós Imagem
           ButtonBar(
@@ -37,7 +47,8 @@ class ConfirmImageScreen extends StatelessWidget {
                 color: Colors.pinkAccent,
                 child: Text('Salvar Imagem'),
                 onPressed: () {
-                  Navigator.of(context).popAndPushNamed('/');
+                  //Navigator.of(context).popAndPushNamed('/');
+                  uploadFile();
                 },
               ),
             ],
@@ -46,4 +57,16 @@ class ConfirmImageScreen extends StatelessWidget {
       ),
     );
   }
+Future uploadFile() async {
+  // Cria uma referência para o local que você deseja fazer o upload da imagem 
+   StorageReference storageReference = FirebaseStorage.instance    
+       .ref()    
+       .child('/images/${widget.imagePath}');  
+   // realiza o upload da imagem no firebase      
+   StorageUploadTask uploadTask = storageReference.putFile(File(widget.imagePath));    
+   await uploadTask.onComplete;    
+   print('File Uploaded'); 
+
+   
+ }  
 }
