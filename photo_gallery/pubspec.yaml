@@ -33,6 +33,7 @@ dependencies:
   shared_preferences: ^0.5.8
   get_it: ^4.0.2
   data_connection_checker: ^0.3.4
+  dartz: ^0.9.1
 
 
   # The following adds the Cupertino Icons font to your application.
