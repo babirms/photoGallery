@@ -3,10 +3,10 @@ import 'package:equatable/equatable.dart';
 import 'package:photo_gallery/core/resources/error.dart';
 import 'package:photo_gallery/core/resources/usecase.dart';
 import 'package:photo_gallery/features/camera/domain/entities/image.dart';
-import 'package:photo_gallery/features/camera/domain/repositories/camera_repository.dart';
+import 'package:photo_gallery/features/camera/domain/repositories/image_repository.dart';
 
 class SaveImage extends UseCase<bool, Params> {
-  final CameraRepository repository;
+  final ImageRepository repository;
 
   SaveImage(this.repository);
 
