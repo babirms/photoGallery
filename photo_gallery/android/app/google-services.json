@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1009415935622",
+    "firebase_url": "https://simple-gallery-3e3bd.firebaseio.com",
+    "project_id": "simple-gallery-3e3bd",
+    "storage_bucket": "simple-gallery-3e3bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009415935622:android:5d863b64494baca7f36307",
+        "android_client_info": {
+          "package_name": "com.challenge.photo_gallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1009415935622-8msc7rtb2jeekglrinjrid5f4khqov2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIwH7U8SdQ2EVpfoC3ykTUx5XAJLSgdJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1009415935622-8msc7rtb2jeekglrinjrid5f4khqov2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
