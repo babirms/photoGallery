@@ -14,14 +14,14 @@ void main() async {
 
   runApp(
     MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Simple Gallery',
         theme: ThemeData(
           primarySwatch: Colors.pink,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        // home: MyHomePage(title: 'Simple Gallery'),
         routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) => MyHomePage(title: 'Simple Gallery', camera: firstCamera),
+          '/': (BuildContext context) =>
+              MyHomePage(title: 'Simple Gallery', camera: firstCamera),
           '/camera': (BuildContext context) => TakePictureScreen(
                 camera: firstCamera,
               ),
@@ -39,14 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,17 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Clique para tirar uma foto',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
-             MaterialPageRoute(
+            MaterialPageRoute(
               builder: (context) => TakePictureScreen(
                 camera: widget.camera,
               ),
@@ -75,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
         tooltip: 'camera',
-        child: Icon(Icons.add),
+        child: Icon(Icons.camera),
       ),
     );
   }
