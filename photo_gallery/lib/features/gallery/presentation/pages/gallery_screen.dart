@@ -93,7 +93,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           imageList != null
               ? imageList.isNotEmpty

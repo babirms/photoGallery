@@ -22,9 +22,8 @@ class _DisplayGridState extends State<DisplayGrid> {
   Widget build(BuildContext context) {
     return Flexible(
       child: GridView.count(
-          //shrinkWrap: true,
           childAspectRatio: 1.0,
-          padding: EdgeInsets.only(left: 16, right: 16),
+          padding: EdgeInsets.only(left: 16, right: 16, top: 20, bottom: 20),
           crossAxisCount: 2,
           crossAxisSpacing: 18,
           mainAxisSpacing: 18,

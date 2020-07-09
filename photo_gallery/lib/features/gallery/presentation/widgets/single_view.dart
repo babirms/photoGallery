@@ -22,55 +22,49 @@ class _SingleViewState extends State<SingleView> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: Dimensions.getConvertedHeightSize(35, context),
-              ),
-              Text(
-                "Visualização",
-                style: TextStyle(
-                  fontSize: Dimensions.getTextSize(context, 32),
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(82, 82, 82, 1),
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: Dimensions.getConvertedHeightSize(35, context),
                 ),
-              ),
-               SizedBox(
-                height: Dimensions.getConvertedHeightSize(20, context),
-              ),
-              ImageCard(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    widget.path,
-                    height: Dimensions.getConvertedHeightSize(350, context),
-                    fit: BoxFit.fitWidth,
+                SizedBox(
+                  height: Dimensions.getConvertedHeightSize(20, context),
+                ),
+                ImageCard(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      widget.path,
+                      height: Dimensions.getConvertedHeightSize(350, context),
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
-              ),
-               SizedBox(
-                height: Dimensions.getConvertedHeightSize(20, context),
-              ),
-              RaisedButton(
-                padding:
-                    Dimensions.getEdgeInsetsFromLTRB(context, 20, 14, 20, 14),
-                color: Colors.white,
-                child: Text(
-                  'Voltar'.toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.black45,
-                  ),
+                SizedBox(
+                  height: Dimensions.getConvertedHeightSize(20, context),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
+                RaisedButton(
+                  padding:
+                      Dimensions.getEdgeInsetsFromLTRB(context, 20, 14, 20, 14),
+                  color: Colors.purple,
+                  child: Text(
+                    'Voltar'.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      
     );
   }
 }
