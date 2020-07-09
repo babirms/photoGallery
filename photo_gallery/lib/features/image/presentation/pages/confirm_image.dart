@@ -56,9 +56,7 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                   color: Color.fromRGBO(102, 102, 102, 1),
                 ),
               ),
-              /*SizedBox(
-                height: Dimensions.getConvertedHeightSize(20, context),
-              ),*/
+              
               // Visualização da Imagem coletada
               Container(
                 padding: Dimensions.getEdgeInsetsAll(context, 20),
