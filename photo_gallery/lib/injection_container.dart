@@ -6,7 +6,7 @@ import 'package:photo_gallery/core/network/network_info.dart';
 import 'package:photo_gallery/features/image/data/datasources/image_remote_data_source.dart';
 import 'package:photo_gallery/features/image/data/repositories/image_repository_impl.dart';
 import 'package:photo_gallery/features/image/domain/repositories/image_repository.dart';
-import 'package:photo_gallery/features/image/domain/usecases/get_image.dart';
+import 'package:photo_gallery/features/image/domain/usecases/get_images.dart';
 import 'package:photo_gallery/features/image/domain/usecases/save_image.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,11 +31,11 @@ void init() async {
 void _initImage() {
   // Bloc
   sl.registerFactory(
-    () => ImageBloc(getImage: sl(), saveImage: sl()),
+    () => ImageBloc(getImages: sl(), saveImage: sl()),
   );
   // UseCases
   sl.registerLazySingleton(() => SaveImage(sl()));
-  sl.registerLazySingleton(() => GetImage(sl()));
+  sl.registerLazySingleton(() => GetImages(sl()));
   // Repository
   sl.registerLazySingleton<ImageRepository>(
       () => ImageRepositoryImpl(dataSource: sl(), networkInfo: sl()));

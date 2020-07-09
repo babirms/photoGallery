@@ -25,8 +25,7 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
 
       QuerySnapshot querySnapshot = await collectionReference.getDocuments();
       List<DocumentSnapshot> listDoc = querySnapshot.documents;
-      return ImageModel.getListFromDocumentsSnapshots(listDoc);
-      
+      return ImageModel.getListFromDocumentsSnapshots(listDoc);     
     } on Exception catch (e) {
       throw e;
     }
@@ -44,12 +43,13 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
           storageReference.putFile(File(imageModel.path));
       await uploadTask.onComplete;
       print('File Uploaded');
+      var urlResult = await storageReference.getDownloadURL();
       /*************************************/
-
+      
       // salva o path no database
       DocumentReference docRef =
           firestore.collection(_collectionName).document();
-      docRef.setData(imageModel.toJson(), merge: true);
+      docRef.setData(ImageModel(path: urlResult).toJson(), merge: true);
 
     } on Exception catch (e) {
       throw e;

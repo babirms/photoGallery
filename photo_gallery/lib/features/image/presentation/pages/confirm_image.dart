@@ -21,26 +21,7 @@ class ConfirmImageScreen extends StatefulWidget {
 class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocListener<ImageBloc, ImageState>(
-        listener: (context, state) {
-          if (state is Error) {
-            Container(
-              child: Text('Erro'),
-            );
-          }
-        },
-        child: BlocBuilder<ImageBloc, ImageState>(
-          builder: (context, state) {
-            if (state is Loading) {
-              return Container();
-            } else {
-              return _buildPage(context);
-            }
-          },
-        ),
-      ),
-    );
+    return _buildPage(context);
   }
 
   Widget _buildPage(BuildContext context) {
@@ -75,7 +56,6 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                       new imageEntity.Image(path: widget.imagePath);
                   BlocProvider.of<ImageBloc>(context)
                       .add(SaveImageEvent(image: imagem));
-                  Navigator.of(context).popAndPushNamed('/');
                 },
               ),
             ],
@@ -84,5 +64,4 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
       ),
     );
   }
-
 }

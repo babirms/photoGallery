@@ -1,20 +1,22 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:photo_gallery/core/resources/error.dart';
 import 'package:photo_gallery/core/resources/usecase.dart';
-import 'package:photo_gallery/features/image/domain/usecases/get_image.dart';
+import 'package:photo_gallery/features/image/domain/usecases/get_images.dart';
 import 'package:photo_gallery/features/image/domain/usecases/save_image.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 class ImageBloc extends Bloc<ImageEvent, ImageState> {
-  final GetImage getImage;
+  final GetImages getImages;
   final SaveImage saveImage;
 
-  ImageBloc({@required this.getImage, @required this.saveImage})
-      : super(Empty());
+  ImageBloc({@required this.getImages, @required this.saveImage})
+      : super(Empty()) {
+    add(GetImageEvent());
+  }
   @override
   Stream<ImageState> mapEventToState(
     ImageEvent event,
@@ -24,12 +26,16 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
       final failureOrBool = await saveImage(Params(image: event.image));
       yield* _eitherLoadedOrErrorState(failureOrBool);
     } else if (event is GetImageEvent) {
+      print('entrei no get');
       yield Loading();
-      final failureOrData = await getImage(NoParams());
+      print('passei do loading');
+      final failureOrData = await getImages(NoParams());
+      print('saí do datasource');
       yield failureOrData.fold((failure) {
+        print('entrei no failure');
         return Error(failure: failure);
       }, (data) {
-        return Loaded();
+        return Loaded(imagesList: data);
       });
     }
   }
