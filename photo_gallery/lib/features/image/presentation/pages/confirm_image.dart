@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:photo_gallery/core/resources/dimensions.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart'
     as imageEntity;
@@ -25,38 +26,77 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
   }
 
   Widget _buildPage(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: ListView(
         children: <Widget>[
-          // Title
-          Text(
-            'Confirma envio?',
-            style: TextStyle(color: Colors.black, fontSize: 12),
-          ),
-          // Visualização da Imagem coletada
-          Image.file(
-            File(widget.imagePath),
-          ),
-          // Navegação Básica pós Imagem
-          ButtonBar(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
-                color: Colors.teal,
-                child: Text('Cancelar'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+              SizedBox(
+                height: Dimensions.getConvertedHeightSize(50, context),
               ),
-              RaisedButton(
-                color: Colors.pinkAccent,
-                child: Text('Salvar Imagem'),
-                onPressed: () {
-                  imageEntity.Image imagem =
-                      new imageEntity.Image(path: widget.imagePath);
-                  BlocProvider.of<ImageBloc>(context)
-                      .add(SaveImageEvent(image: imagem));
-                },
+              // Title
+              Text(
+                'Confirmação de Envio',
+                style: TextStyle(
+                  fontSize: Dimensions.getTextSize(context, 26),
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(82, 82, 82, 1),
+                ),
+              ),
+              SizedBox(
+                height: Dimensions.getConvertedHeightSize(1, context),
+              ),
+              Text(
+                'Gostaria de enviar esta foto para a galeria?',
+                style: TextStyle(
+                  fontSize: Dimensions.getTextSize(context, 14),
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromRGBO(102, 102, 102, 1),
+                ),
+              ),
+              
+              // Visualização da Imagem coletada
+              Container(
+                padding: Dimensions.getEdgeInsetsAll(context, 20),
+                child: Image.file(
+                  File(widget.imagePath),
+                  height: Dimensions.getConvertedHeightSize(350, context),
+                ),
+              ),
+              // Navegação Básica pós Imagem
+              ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RaisedButton(
+                    padding: Dimensions.getEdgeInsetsFromLTRB(
+                        context, 20, 14, 20, 14),
+                    color: Colors.white,
+                    child: Text(
+                      'Cancelar'.toUpperCase(),
+                      style: TextStyle(
+                        color: Colors.black45,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  RaisedButton(
+                    padding: Dimensions.getEdgeInsetsFromLTRB(
+                        context, 30, 14, 30, 14),
+                    color: Colors.purple,
+                    child: Text('Salvar Imagem'.toUpperCase()),
+                    onPressed: () {
+                      imageEntity.Image imagem =
+                          new imageEntity.Image(path: widget.imagePath);
+                      BlocProvider.of<ImageBloc>(context)
+                          .add(SaveImageEvent(image: imagem));
+                      Navigator.of(context).popAndPushNamed('/');
+                    },
+                  ),
+                ],
               ),
             ],
           ),

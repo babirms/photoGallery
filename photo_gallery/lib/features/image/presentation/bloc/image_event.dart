@@ -16,5 +16,3 @@ class SaveImageEvent extends ImageEvent {
   @override
   List<Object> get props => [image];
 }
-
-class GetImageEvent extends ImageEvent{}

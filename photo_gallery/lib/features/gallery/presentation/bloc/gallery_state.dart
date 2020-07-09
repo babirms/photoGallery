@@ -3,19 +3,26 @@ import 'package:photo_gallery/core/resources/error.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart';
 import 'package:meta/meta.dart';
 
-abstract class ImageState extends Equatable {
-  const ImageState();
+abstract class GalleryState extends Equatable {
+  const GalleryState();
   @override
   List<Object> get props => [];
 }
 
-class Empty extends ImageState {}
+class Empty extends GalleryState {}
 
-class Loading extends ImageState {}
+class Loading extends GalleryState {}
 
-class Loaded extends ImageState {}
+class Loaded extends GalleryState {
+  final List<Image> imagesList;
 
-class Error extends ImageState {
+  Loaded({@required this.imagesList});
+
+  @override
+  List<Object> get props => [imagesList];
+}
+
+class Error extends GalleryState {
   final Failure failure;
 
   Error({@required this.failure});

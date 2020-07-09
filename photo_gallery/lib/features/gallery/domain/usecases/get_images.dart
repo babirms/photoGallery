@@ -1,11 +1,11 @@
 import 'package:photo_gallery/core/resources/error.dart';
 import 'package:dartz/dartz.dart';
 import 'package:photo_gallery/core/resources/usecase.dart';
+import 'package:photo_gallery/features/gallery/domain/repositories/gallery_repository.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart';
-import 'package:photo_gallery/features/image/domain/repositories/image_repository.dart';
 
 class GetImages extends UseCase<List<Image>, NoParams> {
-  final ImageRepository repository;
+  final GalleryRepository repository;
 
   GetImages(this.repository);
 

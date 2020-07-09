@@ -20,12 +20,12 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
   @override
   Future<List<ImageModel>> getImages() async {
     try {
-       CollectionReference collectionReference =
+      CollectionReference collectionReference =
           firestore.collection(_collectionName);
 
       QuerySnapshot querySnapshot = await collectionReference.getDocuments();
       List<DocumentSnapshot> listDoc = querySnapshot.documents;
-      return ImageModel.getListFromDocumentsSnapshots(listDoc);     
+      return ImageModel.getListFromDocumentsSnapshots(listDoc);
     } on Exception catch (e) {
       throw e;
     }
@@ -45,7 +45,7 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
       print('File Uploaded');
       var urlResult = await storageReference.getDownloadURL();
       /*************************************/
-      
+
       // salva o path no database
       DocumentReference docRef =
           firestore.collection(_collectionName).document();
