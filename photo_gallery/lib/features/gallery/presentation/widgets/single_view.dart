@@ -20,51 +20,31 @@ class _SingleViewState extends State<SingleView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: Dimensions.getConvertedHeightSize(35, context),
-                ),
-                SizedBox(
-                  height: Dimensions.getConvertedHeightSize(20, context),
-                ),
-                ImageCard(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      widget.path,
-                      height: Dimensions.getConvertedHeightSize(350, context),
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: Dimensions.getConvertedHeightSize(20, context),
-                ),
-                RaisedButton(
-                  padding:
-                      Dimensions.getEdgeInsetsFromLTRB(context, 20, 14, 20, 14),
-                  color: Colors.purple,
-                  child: Text(
-                    'Voltar'.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          ],
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.purple,
         ),
-      
+        elevation: 3,
+        title: Text(
+          "Voltar para o início".toUpperCase(),
+          style: TextStyle(
+            fontSize: Dimensions.getTextSize(context, 18),
+            fontWeight: FontWeight.w300,
+            color: Color.fromRGBO(102, 102, 102, 1),
+          ),
+        ),
+        backgroundColor: Colors.white,
+        centerTitle: false,
+      ),
+      body: Center(
+        child: Container(
+          constraints: BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(widget.path), fit: BoxFit.cover),
+          ),
+        ),
+      ),
     );
   }
 }
