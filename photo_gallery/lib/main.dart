@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:photo_gallery/features/gallery/presentation/pages/gallery_screen.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/image_bloc.dart';
 import 'package:photo_gallery/features/image/presentation/pages/main_camera.dart';
 import 'injection_container.dart' as ic;
@@ -26,7 +27,7 @@ void main() async {
         ),
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) =>
-              MyHomePage(title: 'Simple Gallery', camera: firstCamera),
+              GalleryScreen(camera: firstCamera),
           '/camera': (BuildContext context) => TakePictureScreen(
                 camera: firstCamera,
               ),
