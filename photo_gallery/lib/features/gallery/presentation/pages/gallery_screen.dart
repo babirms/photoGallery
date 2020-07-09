@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:photo_gallery/core/resources/dimensions.dart';
+import 'package:photo_gallery/core/resources/strings.dart';
 import 'package:photo_gallery/features/gallery/presentation/widgets/display_grid.dart';
 import 'package:photo_gallery/features/image/presentation/pages/main_camera.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart'
@@ -70,7 +71,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Bem-Vindo",
+                      Strings.welcome_message,
                       style: TextStyle(
                         fontSize: Dimensions.getTextSize(context, 32),
                         fontWeight: FontWeight.bold,
@@ -81,7 +82,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                       height: Dimensions.getConvertedHeightSize(1, context),
                     ),
                     Text(
-                      "Navegue pelas fotos da galeria",
+                      Strings.subtitle_message,
                       style: TextStyle(
                         fontSize: Dimensions.getTextSize(context, 14),
                         fontWeight: FontWeight.w300,
@@ -110,14 +111,14 @@ class _GalleryScreenState extends State<GalleryScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset(
-                            'assets/no_data_image.png',
+                            Strings.no_data_message,
                             width:
                                 Dimensions.getConvertedWidthSize(200, context),
                           ),
                           Container(
                             padding: Dimensions.getEdgeInsetsAll(context, 20),
                             child: Text(
-                              'Não existem dados para serem exibidos.',
+                              Strings.error_data_message,
                               style: TextStyle(
                                 fontSize: Dimensions.getTextSize(context, 14),
                                 fontWeight: FontWeight.w300,

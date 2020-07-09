@@ -7,6 +7,7 @@ import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:photo_gallery/core/resources/dimensions.dart';
 import 'package:photo_gallery/features/image/presentation/pages/confirm_image.dart';
+import 'package:photo_gallery/core/resources/strings.dart';
 
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -27,21 +28,12 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   void initState() {
     super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
-    _controller = CameraController(
-        // Get a specific camera from the list of available cameras.
-        widget.camera,
-        // Define the resolution to use.
-        ResolutionPreset.medium);
-
-    // Next, initialize the controller. This returns a Future.
+    _controller = CameraController(widget.camera, ResolutionPreset.medium);
     _initializeControllerFuture = _controller.initialize();
   }
 
   @override
   void dispose() {
-    // Dispose of the controller when the widget is disposed.
     _controller.dispose();
     super.dispose();
   }
@@ -55,7 +47,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
         ),
         elevation: 3,
         title: Text(
-          "Tire sua foto".toUpperCase(),
+          Strings.take_your_picture.toUpperCase(),
           style: TextStyle(
             fontSize: Dimensions.getTextSize(context, 18),
             fontWeight: FontWeight.w300,
@@ -71,14 +63,16 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             return CameraPreview(_controller);
           } else {
-            // Otherwise, display a loading indicator.
             return Center(child: CircularProgressIndicator());
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-          child: Icon(Icons.camera_alt, color: Colors.purple,),
+          backgroundColor: Colors.white,
+          child: Icon(
+            Icons.camera_alt,
+            color: Colors.purple,
+          ),
           onPressed: () async {
             try {
               await _initializeControllerFuture;
@@ -94,7 +88,6 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                 ),
               );
             } catch (e) {
-              // If an error occurs, log the error to the console.
               print(e);
             }
           }),

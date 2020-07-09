@@ -26,12 +26,8 @@ void main() async {
         ),
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => GalleryScreen(camera: firstCamera),
-          '/camera': (BuildContext context) => TakePictureScreen(
-                camera: firstCamera,
-              ),
         },
       ),
     ),
   );
-
 }
