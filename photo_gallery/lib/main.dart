@@ -20,7 +20,7 @@ void main() async {
         ),
       ],
       child: MaterialApp(
-        title: 'Simple Gallery',
+        title: 'Photo Gallery',
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
