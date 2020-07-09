@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:photo_gallery/features/gallery/presentation/bloc/bloc.dart';
 import 'package:photo_gallery/features/gallery/presentation/pages/gallery_screen.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/image_bloc.dart';
 import 'package:photo_gallery/features/image/presentation/pages/main_camera.dart';
@@ -18,6 +19,9 @@ void main() async {
         BlocProvider<ImageBloc>(
           create: (_) => ic.sl<ImageBloc>(),
         ),
+        BlocProvider<GalleryBloc>(
+          create: (_) => ic.sl<GalleryBloc>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Simple Gallery',
@@ -26,8 +30,7 @@ void main() async {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) =>
-              GalleryScreen(camera: firstCamera),
+          '/': (BuildContext context) => GalleryScreen(camera: firstCamera),
           '/camera': (BuildContext context) => TakePictureScreen(
                 camera: firstCamera,
               ),
