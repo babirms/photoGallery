@@ -39,7 +39,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
               return Stack(
                 children: <Widget>[
                   _buildPage(context, null),
-                  // LoadingWidget(),
                 ],
               );
             } else if (state is Loaded) {
@@ -84,7 +83,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                       "Navegue pelas fotos da galeria",
                       style: TextStyle(
                         fontSize: Dimensions.getTextSize(context, 14),
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.w300,
                         color: Color.fromRGBO(102, 102, 102, 1),
                       ),
                     ),
@@ -101,46 +100,35 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   ? DisplayGrid(
                       imageList: imageList,
                     )
-                  : Container(child: Text('Não existem dados.'))
+                  : Container(
+                      padding: Dimensions.getEdgeInsetsAll(context, 20),
+                      child: Center(
+                        child: Text('Não existem dados.'),
+                      ),
+                    )
               : Container(
-                  child: Text("Aguarde..."),
+                  padding: Dimensions.getEdgeInsetsAll(context, 20),
+                  child: Center(
+                    child: Text("Aguarde..."),
+                  ),
                 ),
-          Container(
-            width: double.infinity,
-            padding: Dimensions.getEdgeInsetsAll(context, 15),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 15)],
-            ),
-            child: RaisedButton(
-              padding: Dimensions.getEdgeInsetsAll(context, 5),
-              color: Colors.purple,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text('Tire uma foto', style: TextStyle(color: Colors.white)),
-                ],
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  CupertinoPageRoute(
-                    builder: (context) => TakePictureScreen(
-                      camera: widget.camera,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.purple,
+        child: Icon(
+          Icons.camera,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            CupertinoPageRoute(
+              builder: (context) => TakePictureScreen(
+                camera: widget.camera,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -35,6 +35,8 @@ dependencies:
   data_connection_checker: ^0.3.4
   dartz: ^0.9.1
   cloud_firestore: ^0.13.7
+  flutter_icons: ^1.1.0
+  flutter_feather_icons: ^1.0.3
 
 
   # The following adds the Cupertino Icons font to your application.

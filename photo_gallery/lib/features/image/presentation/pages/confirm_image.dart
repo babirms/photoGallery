@@ -53,14 +53,13 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                 'Gostaria de enviar esta foto para a galeria?',
                 style: TextStyle(
                   fontSize: Dimensions.getTextSize(context, 14),
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w300,
                   color: Color.fromRGBO(102, 102, 102, 1),
                 ),
               ),
               SizedBox(
                 height: Dimensions.getConvertedHeightSize(20, context),
               ),
-              // Visualização da Imagem coletada
               ImageCard(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
@@ -73,7 +72,6 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
               SizedBox(
                 height: Dimensions.getConvertedHeightSize(20, context),
               ),
-              // Navegação Básica pós Imagem
               ButtonBar(
                 alignment: MainAxisAlignment.center,
                 children: <Widget>[
