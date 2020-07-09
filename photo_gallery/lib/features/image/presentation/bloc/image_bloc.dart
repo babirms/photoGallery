@@ -34,7 +34,6 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
       return Error(failure: failure);
     }, (result) {
       if (result) {
-        
         return Loaded();
       } else
         return Error(failure: ServerFailure());
