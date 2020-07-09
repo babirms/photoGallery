@@ -9,6 +9,8 @@ import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart'
     as imageEntity;
 
+import 'package:photo_gallery/features/image/presentation/widgets/save_confirmation.dart';
+
 class ConfirmImageScreen extends StatefulWidget {
   final String imagePath;
 
@@ -21,6 +23,7 @@ class ConfirmImageScreen extends StatefulWidget {
 }
 
 class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
+  bool isdisabled = false;
   @override
   Widget build(BuildContext context) {
     return _buildPage(context);
@@ -94,20 +97,30 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                         context, 30, 14, 30, 14),
                     color: Colors.purple,
                     child: Text('Salvar Imagem'.toUpperCase()),
-                    onPressed: () {
-                      imageEntity.Image imagem =
-                          new imageEntity.Image(path: widget.imagePath);
-                      BlocProvider.of<ImageBloc>(context)
-                          .add(SaveImageEvent(image: imagem));
+                    disabledColor: Colors.grey,
+                    onPressed: isdisabled
+                        ? null
+                        : () {
+                            imageEntity.Image imagem =
+                                new imageEntity.Image(path: widget.imagePath);
+                            BlocProvider.of<ImageBloc>(context)
+                                .add(SaveImageEvent(image: imagem));
 
-                      showDialog(
-                          context: context,
-                          child: SimpleDialog(
-                            children: <Widget>[Text('Enviado com sucesso!')],
-                          ));
+                            setState(() => isdisabled = true);
 
-                      Navigator.of(context).pushNamed('/');
-                    },
+                            showDialog(
+                                barrierDismissible: false,
+                                child: SimpleDialog(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: Dimensions.getEdgeInsetsAll(
+                                          context, 25),
+                                      child: SaveConfirmation(),
+                                    ),
+                                  ],
+                                ),
+                                context: context);
+                          },
                   ),
                 ],
               ),
