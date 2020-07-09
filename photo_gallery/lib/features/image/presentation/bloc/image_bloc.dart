@@ -4,17 +4,22 @@ import 'package:dartz/dartz.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_gallery/core/resources/error.dart';
-import 'package:photo_gallery/features/gallery/presentation/bloc/bloc.dart'
-    as galleryBloc;
 import 'package:photo_gallery/features/image/domain/usecases/save_image.dart';
+
+import 'package:photo_gallery/features/image/domain/usecases/get_images.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
+import 'package:photo_gallery/core/resources/usecase.dart';
 import 'package:meta/meta.dart';
 
 class ImageBloc extends Bloc<ImageEvent, ImageState> {
   final SaveImage saveImage;
+  final GetImages getImages;
 
-  ImageBloc({@required this.saveImage}) : super(Empty()) {
-    // add(GetImageEvent());
+  ImageBloc({
+    @required this.saveImage,
+    @required this.getImages,
+  }) : super(Empty()) {
+    add(GetImagesEvent());
   }
   @override
   Stream<ImageState> mapEventToState(
@@ -24,6 +29,13 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
       yield Loading();
       final failureOrBool = await saveImage(Params(image: event.image));
       yield* _eitherLoadedOrErrorState(failureOrBool);
+    } else if (event is GetImagesEvent) {
+      var failureOrData = await getImages(NoParams());
+      yield failureOrData.fold((failure) {
+        return Error(failure: failure);
+      }, (data) {
+        return Loaded(imagesList: data);
+      });
     }
   }
 
@@ -33,10 +45,10 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
     yield failureOrBool.fold((failure) {
       return Error(failure: failure);
     }, (result) {
+      this.add(GetImagesEvent());
       if (result) {
         return Loaded();
-      } else
-        return Error(failure: ServerFailure());
+      }
     });
   }
 }

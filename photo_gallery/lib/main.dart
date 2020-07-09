@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_gallery/features/gallery/presentation/bloc/bloc.dart';
 import 'package:photo_gallery/features/gallery/presentation/pages/gallery_screen.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/image_bloc.dart';
 import 'package:photo_gallery/features/image/presentation/pages/main_camera.dart';
@@ -18,9 +17,6 @@ void main() async {
       providers: [
         BlocProvider<ImageBloc>(
           create: (_) => ic.sl<ImageBloc>(),
-        ),
-        BlocProvider<GalleryBloc>(
-          create: (_) => ic.sl<GalleryBloc>(),
         ),
       ],
       child: MaterialApp(
