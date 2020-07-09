@@ -20,7 +20,7 @@ class ImageModel extends Image {
 
   // converte da entidade
   factory ImageModel.fromEntity(Image image) {
-    if(image == null) return null;
+    if (image == null) return null;
     return ImageModel(path: image.path);
   }
 
@@ -32,5 +32,15 @@ class ImageModel extends Image {
     objectMap['id'] = snapshot.documentID;
 
     return ImageModel.fromJson(objectMap);
+  }
+
+  // recebe uma lista dos Documentos armazernados no database
+  static List<ImageModel> getListFromDocumentsSnapshots(
+      List<DocumentSnapshot> listDocs) {
+    if (listDocs == null) return null;
+
+    return listDocs.map((documentSnapshot) {
+      return ImageModel.fromDocumentSnapshot(documentSnapshot);
+    }).toList();
   }
 }

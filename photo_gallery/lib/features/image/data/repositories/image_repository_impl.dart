@@ -14,10 +14,10 @@ class ImageRepositoryImpl extends ImageRepository {
   ImageRepositoryImpl({@required this.networkInfo, @required this.dataSource});
 
   @override
-  Future<Either<Failure, Image>> getImage() async {
+  Future<Either<Failure, List<Image>>> getImages() async {
     if (await networkInfo.isConnected) {
       try {
-        Image image = await dataSource.getImage();
+        List<Image> image = await dataSource.getImages();
         return Right(image);
       } on Exception {
         return Left(ServerFailure());

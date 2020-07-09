@@ -7,24 +7,26 @@ import 'package:meta/meta.dart';
 
 abstract class ImageRemoteDataSource {
   Future<bool> saveImage(ImageModel imageModel);
-  Future<ImageModel> getImage();
+  Future<List<ImageModel>> getImages();
 }
 
 class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
   // nome da collection
-  final String _collectionName = 'data';
+  final String _collectionName = 'images';
   final Firestore firestore;
 
   ImageRemoteDataSourceImpl({@required this.firestore});
 
   @override
-  Future<ImageModel> getImage() async {
+  Future<List<ImageModel>> getImages() async {
     try {
-      CollectionReference collection =
-          Firestore.instance.collection(_collectionName);
-      // TO DO: relacionar com a colection criada
-      /*DocumentSnapshot imageSnapshot = await collection.document();
-      return ImageModel.fromDocumentSnapshot(imageSnapshot);*/
+       CollectionReference collectionReference =
+          firestore.collection(_collectionName);
+
+      QuerySnapshot querySnapshot = await collectionReference.getDocuments();
+      List<DocumentSnapshot> listDoc = querySnapshot.documents;
+      return ImageModel.getListFromDocumentsSnapshots(listDoc);
+      
     } on Exception catch (e) {
       throw e;
     }
@@ -35,12 +37,20 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
     ImageModel imageResult;
 
     try {
+      // envia a imagem para o Storage
       StorageReference storageReference =
-          FirebaseStorage.instance.ref().child('/images/${imageModel.path}');
+          FirebaseStorage.instance.ref().child('${imageModel.path}');
       StorageUploadTask uploadTask =
           storageReference.putFile(File(imageModel.path));
       await uploadTask.onComplete;
       print('File Uploaded');
+      /*************************************/
+
+      // salva o path no database
+      DocumentReference docRef =
+          firestore.collection(_collectionName).document();
+      docRef.setData(imageModel.toJson(), merge: true);
+
     } on Exception catch (e) {
       throw e;
     }

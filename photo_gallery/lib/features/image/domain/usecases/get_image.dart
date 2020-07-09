@@ -4,14 +4,13 @@ import 'package:photo_gallery/core/resources/usecase.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart';
 import 'package:photo_gallery/features/image/domain/repositories/image_repository.dart';
 
-class GetImage extends UseCase<Image, NoParams> {
+class GetImage extends UseCase<List<Image>, NoParams> {
   final ImageRepository repository;
 
   GetImage(this.repository);
 
   @override
-  Future<Either<Failure, Image>> call(NoParams params) async {
-    return await repository.getImage();
+  Future<Either<Failure, List<Image>>> call(NoParams params) async {
+    return await repository.getImages();
   }
-
 }
