@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:photo_gallery/core/resources/dimensions.dart';
-import 'package:photo_gallery/features/gallery/presentation/bloc/bloc.dart';
 import 'package:photo_gallery/features/gallery/presentation/widgets/display_grid.dart';
 import 'package:photo_gallery/features/image/presentation/pages/main_camera.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart'
     as imageEntity;
+
+import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
 
 class GalleryScreen extends StatefulWidget {
   final camera;
@@ -22,9 +23,9 @@ class GalleryScreen extends StatefulWidget {
 class _GalleryScreenState extends State<GalleryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: BlocListener<GalleryBloc, GalleryState>(
-        listener: (BuildContext context, GalleryState state) {
+    return Scaffold(
+      body: BlocListener<ImageBloc, ImageState>(
+        listener: (BuildContext context, ImageState state) {
           if (state is Error) {
             Scaffold.of(context).showSnackBar(
               SnackBar(
@@ -33,7 +34,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
             );
           }
         },
-        child: BlocBuilder<GalleryBloc, GalleryState>(
+        child: BlocBuilder<ImageBloc, ImageState>(
           builder: (context, state) {
             if (state is Loading) {
               return Stack(

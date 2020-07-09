@@ -13,7 +13,14 @@ class Empty extends ImageState {}
 
 class Loading extends ImageState {}
 
-class Loaded extends ImageState {}
+class Loaded extends ImageState {
+  final List<Image> imagesList;
+
+  Loaded({@required this.imagesList});
+
+  @override
+  List<Object> get props => [imagesList];
+}
 
 class Error extends ImageState {
   final Failure failure;

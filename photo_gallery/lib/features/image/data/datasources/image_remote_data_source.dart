@@ -11,7 +11,6 @@ abstract class ImageRemoteDataSource {
 }
 
 class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
-  // nome da collection
   final String _collectionName = 'images';
   final Firestore firestore;
 
@@ -19,13 +18,13 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
 
   @override
   Future<List<ImageModel>> getImages() async {
-    try {
-      CollectionReference collectionReference =
+       try {
+       CollectionReference collectionReference =
           firestore.collection(_collectionName);
 
       QuerySnapshot querySnapshot = await collectionReference.getDocuments();
       List<DocumentSnapshot> listDoc = querySnapshot.documents;
-      return ImageModel.getListFromDocumentsSnapshots(listDoc);
+      return ImageModel.getListFromDocumentsSnapshots(listDoc);     
     } on Exception catch (e) {
       throw e;
     }
@@ -36,7 +35,6 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
     ImageModel imageResult;
 
     try {
-      // envia a imagem para o Storage
       StorageReference storageReference =
           FirebaseStorage.instance.ref().child('${imageModel.path}');
       StorageUploadTask uploadTask =

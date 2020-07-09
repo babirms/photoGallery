@@ -4,6 +4,5 @@ import 'package:photo_gallery/features/image/domain/entities/image.dart';
 
 abstract class ImageRepository {
   Future<Either<Failure, bool>> saveImage(Image image);
-  
-
+  Future<Either<Failure, List<Image>>> getImages();
 }
