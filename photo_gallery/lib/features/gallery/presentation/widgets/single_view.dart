@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:photo_gallery/core/resources/dimensions.dart';
+import 'package:photo_gallery/core/resources/strings.dart';
 
 class SingleView extends StatefulWidget {
   final String path;
@@ -25,7 +26,7 @@ class _SingleViewState extends State<SingleView> {
         ),
         elevation: 3,
         title: Text(
-          "Voltar para o início".toUpperCase(),
+          Strings.back_to_home.toUpperCase(),
           style: TextStyle(
             fontSize: Dimensions.getTextSize(context, 18),
             fontWeight: FontWeight.w300,

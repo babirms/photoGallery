@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:photo_gallery/core/resources/dimensions.dart';
+import 'package:photo_gallery/core/resources/strings.dart';
 
 class SaveConfirmation extends StatelessWidget {
   @override
@@ -10,13 +11,13 @@ class SaveConfirmation extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Image.asset(
-          'assets/confirmation.png',
+          Strings.save_confirmation,
           width: Dimensions.getConvertedWidthSize(400, context),
         ),
         Container(
           padding: Dimensions.getEdgeInsetsAll(context, 20),
           child: Text(
-            'Imagem enviada com sucesso !',
+            Strings.success_message,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: Dimensions.getTextSize(context, 14),
@@ -29,7 +30,7 @@ class SaveConfirmation extends StatelessWidget {
           padding: Dimensions.getEdgeInsetsFromLTRB(context, 30, 14, 30, 14),
           color: Colors.purple,
           textColor: Colors.white,
-          child: Text('Voltar ao início'.toUpperCase()),
+          child: Text(Strings.back_to_home.toUpperCase()),
           onPressed: () {
             Navigator.of(context).pushNamed('/');
           },

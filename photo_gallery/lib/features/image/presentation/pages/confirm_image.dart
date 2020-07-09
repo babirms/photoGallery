@@ -8,7 +8,7 @@ import 'package:photo_gallery/core/resources/dimensions.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart'
     as imageEntity;
-
+import 'package:photo_gallery/core/resources/strings.dart';
 import 'package:photo_gallery/features/image/presentation/widgets/save_confirmation.dart';
 
 class ConfirmImageScreen extends StatefulWidget {
@@ -41,7 +41,7 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                 height: Dimensions.getConvertedHeightSize(50, context),
               ),
               Text(
-                'Confirmação de Envio',
+                Strings.confirmation_title,
                 style: TextStyle(
                   fontSize: Dimensions.getTextSize(context, 26),
                   fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                 height: Dimensions.getConvertedHeightSize(1, context),
               ),
               Text(
-                'Gostaria de enviar esta foto para a galeria?',
+                Strings.confirmation_subtitle,
                 style: TextStyle(
                   fontSize: Dimensions.getTextSize(context, 14),
                   fontWeight: FontWeight.w300,
@@ -82,7 +82,7 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                         context, 20, 14, 20, 14),
                     color: Colors.white,
                     child: Text(
-                      'Cancelar'.toUpperCase(),
+                      Strings.cancel_button.toUpperCase(),
                       style: TextStyle(
                         color: Colors.black45,
                       ),
@@ -95,7 +95,7 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                     padding: Dimensions.getEdgeInsetsFromLTRB(
                         context, 30, 14, 30, 14),
                     color: Colors.purple,
-                    child: Text('Salvar Imagem'.toUpperCase()),
+                    child: Text(Strings.save_button.toUpperCase()),
                     disabledColor: Colors.grey,
                     onPressed: isdisabled
                         ? null
