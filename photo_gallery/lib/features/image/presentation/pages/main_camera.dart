@@ -4,7 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
-import 'package:photo_gallery/features/camera/presentation/pages/confirm_image.dart';
+import 'package:photo_gallery/features/image/presentation/pages/confirm_image.dart';
 
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -31,7 +31,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       // Get a specific camera from the list of available cameras.
       widget.camera,
       // Define the resolution to use.
-      ResolutionPreset.medium,
+      ResolutionPreset.medium
     );
 
     // Next, initialize the controller. This returns a Future.

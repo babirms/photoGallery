@@ -1,22 +1,27 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_gallery/features/camera/presentation/pages/main_camera.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:photo_gallery/features/image/presentation/bloc/image_bloc.dart';
+import 'package:photo_gallery/features/image/presentation/pages/main_camera.dart';
+import 'injection_container.dart' as ic;
 
 void main() async {
-  // plugin inicializado antes do runapp
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Obtain a list of the available cameras on the device.
   final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
   final firstCamera = cameras.first;
+  await ic.init();
 
   runApp(
-    MaterialApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<ImageBloc>(
+          create: (_) => ic.sl<ImageBloc>(),
+        ),
+      ],
+      child: MaterialApp(
         title: 'Simple Gallery',
         theme: ThemeData(
-          primarySwatch: Colors.pink,
+          primarySwatch: Colors.cyan,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routes: <String, WidgetBuilder>{
@@ -25,7 +30,9 @@ void main() async {
           '/camera': (BuildContext context) => TakePictureScreen(
                 camera: firstCamera,
               ),
-        }),
+        },
+      ),
+    ),
   );
 }
 
