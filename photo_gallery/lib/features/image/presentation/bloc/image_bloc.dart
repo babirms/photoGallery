@@ -15,7 +15,7 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
 
   ImageBloc({@required this.getImages, @required this.saveImage})
       : super(Empty()) {
-    add(GetImageEvent());
+    // add(GetImageEvent());
   }
   @override
   Stream<ImageState> mapEventToState(
@@ -25,7 +25,7 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
       yield Loading();
       final failureOrBool = await saveImage(Params(image: event.image));
       yield* _eitherLoadedOrErrorState(failureOrBool);
-    } else if (event is GetImageEvent) {
+    } /*else if (event is GetImageEvent) {
       print('entrei no get');
       yield Loading();
       print('passei do loading');
@@ -37,7 +37,7 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
       }, (data) {
         return Loaded(imagesList: data);
       });
-    }
+    }*/
   }
 
   Stream<ImageState> _eitherLoadedOrErrorState(
