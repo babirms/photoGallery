@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:photo_gallery/core/UI/image_card.dart';
+import 'package:photo_gallery/core/resources/dimensions.dart';
+import 'package:photo_gallery/features/gallery/presentation/widgets/single_view.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart'
     as imageEntity;
 
@@ -14,6 +18,7 @@ class DisplayGrid extends StatefulWidget {
 }
 
 class _DisplayGridState extends State<DisplayGrid> {
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -25,11 +30,37 @@ class _DisplayGridState extends State<DisplayGrid> {
           crossAxisSpacing: 18,
           mainAxisSpacing: 18,
           children: widget.imageList.map((data) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                data.path,
-                fit: BoxFit.fitWidth,
+            counter++;
+            return GestureDetector(
+              onTap: () => {
+                Navigator.of(context).push(
+                  CupertinoPageRoute(
+                    builder: (context) =>
+                        SingleView(path: data.path, ref: counter),
+                  ),
+                ),
+                /*showDialog(
+                  context: context,
+                  builder: (_) => SimpleDialog(
+                    backgroundColor: Colors.white,
+                    children: <Widget>[
+                      Image.network(
+                        data.path,
+                        height: Dimensions.getConvertedHeightSize(350, context),
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ],
+                  ),
+                ),*/
+              },
+              child: ImageCard(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    data.path,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
               ),
             );
           }).toList()),

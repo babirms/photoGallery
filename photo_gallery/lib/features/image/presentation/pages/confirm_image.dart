@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:photo_gallery/core/UI/image_card.dart';
 import 'package:photo_gallery/core/resources/dimensions.dart';
 import 'package:photo_gallery/features/image/presentation/bloc/bloc.dart';
 import 'package:photo_gallery/features/image/domain/entities/image.dart'
@@ -56,14 +57,21 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                   color: Color.fromRGBO(102, 102, 102, 1),
                 ),
               ),
-              
+              SizedBox(
+                height: Dimensions.getConvertedHeightSize(20, context),
+              ),
               // Visualização da Imagem coletada
-              Container(
-                padding: Dimensions.getEdgeInsetsAll(context, 20),
-                child: Image.file(
-                  File(widget.imagePath),
-                  height: Dimensions.getConvertedHeightSize(350, context),
+              ImageCard(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.file(
+                    File(widget.imagePath),
+                    height: Dimensions.getConvertedHeightSize(350, context),
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: Dimensions.getConvertedHeightSize(20, context),
               ),
               // Navegação Básica pós Imagem
               ButtonBar(

@@ -114,20 +114,24 @@ class _GalleryScreenState extends State<GalleryScreen> {
             ),
             child: RaisedButton(
               padding: Dimensions.getEdgeInsetsAll(context, 5),
-              
               color: Colors.purple,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment:  MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.add, color: Colors.white,),
-                  SizedBox(width: 5,),
+                  Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
                   Text('Tire uma foto', style: TextStyle(color: Colors.white)),
                 ],
               ),
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
+                  CupertinoPageRoute(
                     builder: (context) => TakePictureScreen(
                       camera: widget.camera,
                     ),
