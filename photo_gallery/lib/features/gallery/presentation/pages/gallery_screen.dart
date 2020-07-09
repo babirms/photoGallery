@@ -63,10 +63,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       "Bem-Vindo",
@@ -101,15 +101,36 @@ class _GalleryScreenState extends State<GalleryScreen> {
                       imageList: imageList,
                     )
                   : Container(
+                      height: Dimensions.getConvertedHeightSize(400, context),
+                      alignment: Alignment.center,
                       padding: Dimensions.getEdgeInsetsAll(context, 20),
-                      child: Center(
-                        child: Text('Não existem dados.'),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/no_data_image.png',
+                            width:
+                                Dimensions.getConvertedWidthSize(200, context),
+                          ),
+                          Container(
+                            padding: Dimensions.getEdgeInsetsAll(context, 20),
+                            child: Text(
+                              'Não existem dados para serem exibidos.',
+                              style: TextStyle(
+                                fontSize: Dimensions.getTextSize(context, 14),
+                                fontWeight: FontWeight.w300,
+                                color: Color.fromRGBO(102, 102, 102, 1),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     )
-              : Container(
-                  padding: Dimensions.getEdgeInsetsAll(context, 20),
-                  child: Center(
-                    child: Text("Aguarde..."),
+              : Center(
+                  child: Container(
+                    padding: Dimensions.getEdgeInsetsAll(context, 20),
+                    child: CircularProgressIndicator(),
                   ),
                 ),
         ],

@@ -54,3 +54,5 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/no_data_image.png

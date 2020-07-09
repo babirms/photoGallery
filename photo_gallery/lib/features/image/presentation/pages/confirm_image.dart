@@ -94,12 +94,13 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                         context, 30, 14, 30, 14),
                     color: Colors.purple,
                     child: Text('Salvar Imagem'.toUpperCase()),
-                    onPressed: () {
+                    onPressed: () async*{
                       imageEntity.Image imagem =
                           new imageEntity.Image(path: widget.imagePath);
-                      BlocProvider.of<ImageBloc>(context)
+                     BlocProvider.of<ImageBloc>(context)
                           .add(SaveImageEvent(image: imagem));
-                      Navigator.of(context).popAndPushNamed('/');
+
+                      Navigator.of(context).pushNamed('/');
                     },
                   ),
                 ],
