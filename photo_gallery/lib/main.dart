@@ -27,7 +27,6 @@ void main() async {
         title: 'Simple Gallery',
         theme: ThemeData(
           primarySwatch: Colors.cyan,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => GalleryScreen(camera: firstCamera),

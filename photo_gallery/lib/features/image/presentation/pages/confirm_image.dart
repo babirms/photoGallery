@@ -56,6 +56,7 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                       new imageEntity.Image(path: widget.imagePath);
                   BlocProvider.of<ImageBloc>(context)
                       .add(SaveImageEvent(image: imagem));
+                  Navigator.of(context).popAndPushNamed('/');
                 },
               ),
             ],
