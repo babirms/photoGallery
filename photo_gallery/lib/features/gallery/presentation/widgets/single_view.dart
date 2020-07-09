@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:photo_gallery/core/UI/image_card.dart';
 import 'package:photo_gallery/core/resources/dimensions.dart';
 
 class SingleView extends StatefulWidget {

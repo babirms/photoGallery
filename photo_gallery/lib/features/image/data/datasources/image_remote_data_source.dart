@@ -40,11 +40,8 @@ class ImageRemoteDataSourceImpl extends ImageRemoteDataSource {
       StorageUploadTask uploadTask =
           storageReference.putFile(File(imageModel.path));
       await uploadTask.onComplete;
-      print('File Uploaded');
       var urlResult = await storageReference.getDownloadURL();
-      /*************************************/
 
-      // salva o path no database
       DocumentReference docRef =
           firestore.collection(_collectionName).document();
       docRef.setData(ImageModel(path: urlResult).toJson(), merge: true);

@@ -40,7 +40,6 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
               SizedBox(
                 height: Dimensions.getConvertedHeightSize(50, context),
               ),
-              // Title
               Text(
                 'Confirmação de Envio',
                 style: TextStyle(
@@ -105,9 +104,7 @@ class _ConfirmImageScreenState extends State<ConfirmImageScreen> {
                                 new imageEntity.Image(path: widget.imagePath);
                             BlocProvider.of<ImageBloc>(context)
                                 .add(SaveImageEvent(image: imagem));
-
                             setState(() => isdisabled = true);
-
                             showDialog(
                                 barrierDismissible: false,
                                 child: SimpleDialog(

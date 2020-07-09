@@ -27,21 +27,14 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   void initState() {
     super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
     _controller = CameraController(
-        // Get a specific camera from the list of available cameras.
         widget.camera,
-        // Define the resolution to use.
         ResolutionPreset.medium);
-
-    // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
   }
 
   @override
   void dispose() {
-    // Dispose of the controller when the widget is disposed.
     _controller.dispose();
     super.dispose();
   }
@@ -71,7 +64,6 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             return CameraPreview(_controller);
           } else {
-            // Otherwise, display a loading indicator.
             return Center(child: CircularProgressIndicator());
           }
         },
@@ -94,7 +86,6 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                 ),
               );
             } catch (e) {
-              // If an error occurs, log the error to the console.
               print(e);
             }
           }),
