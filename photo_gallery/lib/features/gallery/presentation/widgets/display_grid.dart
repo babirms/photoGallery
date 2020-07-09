@@ -25,10 +25,8 @@ class _DisplayGridState extends State<DisplayGrid> {
           crossAxisSpacing: 18,
           mainAxisSpacing: 18,
           children: widget.imageList.map((data) {
-            return Container(
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.circular(10)),
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
                 data.path,
                 fit: BoxFit.fitWidth,

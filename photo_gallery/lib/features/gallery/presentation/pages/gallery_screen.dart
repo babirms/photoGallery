@@ -59,7 +59,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 50,
+            height: Dimensions.getConvertedHeightSize(50, context),
           ),
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16),
@@ -70,32 +70,72 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Seja Bem-Vindo",
+                      "Bem-Vindo",
+                      style: TextStyle(
+                        fontSize: Dimensions.getTextSize(context, 32),
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(82, 82, 82, 1),
+                      ),
                     ),
                     SizedBox(
-                      height: 4,
+                      height: Dimensions.getConvertedHeightSize(1, context),
                     ),
                     Text(
-                      "Acesse as fotos da galeria",
+                      "Navegue pelas fotos da galeria",
+                      style: TextStyle(
+                        fontSize: Dimensions.getTextSize(context, 14),
+                        fontWeight: FontWeight.normal,
+                        color: Color.fromRGBO(102, 102, 102, 1),
+                      ),
                     ),
                   ],
                 ),
-               
               ],
             ),
           ),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
-           imageList != null
-                    ? imageList.isNotEmpty
-                        ? DisplayGrid(
-                            imageList: imageList,
-                          )
-                        : Container(child: Text('Não existem dados.'))
-                    : Container(
-                        child: Text("Aguarde..."),
-                      ),
+          imageList != null
+              ? imageList.isNotEmpty
+                  ? DisplayGrid(
+                      imageList: imageList,
+                    )
+                  : Container(child: Text('Não existem dados.'))
+              : Container(
+                  child: Text("Aguarde..."),
+                ),
+          Container(
+            width: double.infinity,
+            padding: Dimensions.getEdgeInsetsAll(context, 15),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 15)],
+            ),
+            child: RaisedButton(
+              padding: Dimensions.getEdgeInsetsAll(context, 5),
+              
+              color: Colors.purple,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment:  MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.add, color: Colors.white,),
+                  SizedBox(width: 5,),
+                  Text('Tire uma foto', style: TextStyle(color: Colors.white)),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => TakePictureScreen(
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
